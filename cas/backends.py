@@ -212,7 +212,9 @@ def _get_pgtiou(pgt):
             ))
     raise CasTicketException("Could not find pgtIou for pgt %s" % pgt)
 
-
+#for edx by wwj
+from student.models import UserProfile
+from student.models import  Registration
 class CASBackend(object):
     """
     CAS authentication backend
@@ -240,6 +242,11 @@ class CASBackend(object):
             if settings.CAS_AUTO_CREATE_USER:
                 user = User.objects.create_user(username, '')
                 user.save()
+                registration = Registration()
+                registration.register(user)
+                profile = UserProfile(user=user)
+                profile.name = username
+                profile.save()
             else:
                 user = None
         return user
