@@ -1,10 +1,12 @@
 #setting for edx
 
 ###install django-cas
+```
 git clone https://github.com/wwj718/django-cas
 cd django-cas
 git checkout wwj/1.2.0
 sudo /edx/bin/pip install ./django-cas
+```
 
 ###set edx-platform/lms/envs/aws.py
 
@@ -35,9 +37,12 @@ add to end of edx-platform/lms/urls.py
 `sudo /edx/bin/supervisorctl restart edxapp:`
 
 
+###Go
+`https://<IP>/accounts/login/`
 
 ###Todo
 add startup.sh
+
 
 
 ---
