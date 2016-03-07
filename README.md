@@ -1,3 +1,51 @@
+#setting for edx
+
+###install django-cas
+git clone https://github.com/wwj718/django-cas
+cd django-cas
+git checkout wwj/1.2.0
+sudo /edx/bin/pip install ./django-cas
+
+###set edx-platform/lms/envs/aws.py
+
+```
+CAS_SERVER_URL = "https://<IP>/wp-cas/login"
+MIDDLEWARE_CLASSES += ('cas.middleware.CASMiddleware',)
+
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+        'cas.backends.CASBackend', 
+)
+```
+
+add to end of edx-platform/lms/envs/aws.py 
+
+###set edx-platform/lms/urls.py
+```
+urlpatterns += (
+# CAS
+url(r'^accounts/login/$', 'cas.views.login', name='login'),
+url(r'^accounts/logout/$', 'cas.views.logout', name='logout'),
+)
+```
+
+add to end of edx-platform/lms/urls.py 
+
+###restart  edxapp:
+`sudo /edx/bin/supervisorctl restart edxapp:`
+
+
+
+###Todo
+add startup.sh
+
+
+---
+
+end_by_wwj
+
+---
+
 # django-cas
 
 CAS client for Django.  This library requires Django 1.5 or above, and Python 2.6, 2.7, 3.4
