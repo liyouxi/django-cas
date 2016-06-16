@@ -5,7 +5,8 @@
 git clone https://github.com/wwj718/django-cas
 cd django-cas
 git checkout wwj/1.2.0
-sudo /edx/bin/pip install ./django-cas
+cd ..
+sudo /edx/bin/pip.edxapp install ./django-cas
 ```
 
 ###set edx-platform/lms/envs/aws.py
