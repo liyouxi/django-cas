@@ -11,8 +11,8 @@ sudo /edx/bin/pip.edxapp install ./django-cas
 
 ###set edx-platform/lms/envs/aws.py
 
-```
-CAS_SERVER_URL = "https://<IP>/wp-cas/login"
+```python
+CAS_SERVER_URL = "https://<IP>/wp-cas/login/" # 注意最后的反斜杠！
 MIDDLEWARE_CLASSES += ('cas.middleware.CASMiddleware',)
 
 AUTHENTICATION_BACKENDS = (
@@ -24,7 +24,7 @@ AUTHENTICATION_BACKENDS = (
 add to end of edx-platform/lms/envs/aws.py 
 
 ###set edx-platform/lms/urls.py
-```
+```python
 urlpatterns += (
 # CAS
 url(r'^accounts/login/$', 'cas.views.login', name='login'),
